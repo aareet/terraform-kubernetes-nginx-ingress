@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "service_ingress_nginx_controller_admission" {
         "helm.sh/chart" = "ingress-nginx-3.23.0"
       }
       "name" = "ingress-nginx-controller-admission"
-      "namespace" = "ingress-nginx"
+      "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
     }
     "spec" = {
       "ports" = [
@@ -22,6 +22,7 @@ resource "kubernetes_manifest" "service_ingress_nginx_controller_admission" {
           "name" = "https-webhook"
           "port" = 443
           "targetPort" = "webhook"
+	  "protocol" = "TCP"
         },
       ]
       "selector" = {

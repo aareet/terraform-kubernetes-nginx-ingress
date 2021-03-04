@@ -18,7 +18,7 @@ resource "kubernetes_manifest" "job_ingress_nginx_admission_patch" {
         "helm.sh/chart" = "ingress-nginx-3.23.0"
       }
       "name" = "ingress-nginx-admission-patch"
-      "namespace" = "ingress-nginx"
+      "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
     }
     "spec" = {
       "template" = {

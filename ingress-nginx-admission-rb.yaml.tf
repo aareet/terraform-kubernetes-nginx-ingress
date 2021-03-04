@@ -18,7 +18,7 @@ resource "kubernetes_manifest" "rolebinding_ingress_nginx_admission" {
         "helm.sh/chart" = "ingress-nginx-3.23.0"
       }
       "name" = "ingress-nginx-admission"
-      "namespace" = "ingress-nginx"
+      "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
@@ -29,7 +29,7 @@ resource "kubernetes_manifest" "rolebinding_ingress_nginx_admission" {
       {
         "kind" = "ServiceAccount"
         "name" = "ingress-nginx-admission"
-        "namespace" = "ingress-nginx"
+        "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
       },
     ]
   }

@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "role_ingress_nginx" {
         "helm.sh/chart" = "ingress-nginx-3.23.0"
       }
       "name" = "ingress-nginx"
-      "namespace" = "ingress-nginx"
+      "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
     }
     "rules" = [
       {

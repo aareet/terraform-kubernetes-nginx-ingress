@@ -24,7 +24,7 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_ingress_nginx_adm
         "clientConfig" = {
           "service" = {
             "name" = "ingress-nginx-controller-admission"
-            "namespace" = "ingress-nginx"
+            "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
             "path" = "/networking/v1beta1/ingresses"
           }
         }

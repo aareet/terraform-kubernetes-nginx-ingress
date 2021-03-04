@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "deployment_ingress_nginx_controller" {
         "helm.sh/chart" = "ingress-nginx-3.23.0"
       }
       "name" = "ingress-nginx-controller"
-      "namespace" = "ingress-nginx"
+      "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
     }
     "spec" = {
       "minReadySeconds" = 0

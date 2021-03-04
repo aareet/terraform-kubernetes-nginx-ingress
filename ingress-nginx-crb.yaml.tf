@@ -23,7 +23,7 @@ resource "kubernetes_manifest" "clusterrolebinding_ingress_nginx" {
       {
         "kind" = "ServiceAccount"
         "name" = "ingress-nginx"
-        "namespace" = "ingress-nginx"
+        "namespace" = kubernetes_manifest.namespace_ingress_nginx.object.metadata.name
       },
     ]
   }
